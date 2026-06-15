@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jam Digital XI-H Historic • Soshum</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="time-siang">
+
+<!-- Stars (malam) -->
+<div class="stars" id="stars"></div>
+
+<!-- Announcement -->
+<div id="announcement" id="ann-bar"></div>
+
+<div class="container">
+  <!-- HEADER -->
+  <div class="card header">
+    <div>
+      <div class="school-name">SMA Negeri 2 Tuban</div>
+    </div>
+    <div class="class-name">
+      <h1>XI - H &nbsp;•&nbsp; HISTORIC</h1>
+      <p>SOSHUM &nbsp;•&nbsp; SMA NEGERI 2 TUBAN</p>
+    </div>
+    <div class="header-badges">
+      <div class="badge live">⬤ LIVE</div>
+      <div class="badge" id="time-badge">☀️ SIANG</div>
+    </div>
+  </div>
+
+  <!-- CLOCK -->
+  <div class="clock-section">
+    <div class="card clock-card">
+      <div id="clock">
+        <span id="hh">00</span><span class="sep">:</span><span id="mm">00</span><span class="sep">:</span><span id="ss">00</span>
+      </div>
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span id="prog-start">07:00</span>
+          <span id="prog-pct">0%</span>
+          <span id="prog-end">15:15</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- Date + Weather -->
+    <div class="card date-weather">
+      <div class="date-part">
+        <div class="date-day" id="day-name">SENIN</div>
+        <div class="date-full" id="date-full">1 Januari 2026</div>
+      </div>
+      <div class="weather-box" id="weather-box">
+        <div class="weather-icon" id="w-icon">🌤️</div>
+        <div class="weather-info">
+          <div class="weather-temp" id="w-temp">--°C</div>
+          <div class="weather-desc" id="w-desc">Memuat cuaca...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="photo-section">
+      <img src="historic.jpg">
+      <div class="photo-overlay"><span>XI - H HISTORIC • SOSHUM 2026</span></div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="schedule-section">
+    <div class="card sched-now">
+      <div class="lbl">▶ JADWAL SEKARANG</div>
+      <div class="subject-name" id="current-subject">—</div>
+      <div class="subject-time" id="current-time">—</div>
+    </div>
+
+    <div class="card sched-next">
+      <div class="lbl">⏭ JADWAL BERIKUTNYA</div>
+      <div class="subject-name" id="next-subject">—</div>
+      <div class="subject-time" id="next-time">—</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid rgba(255,255,255,0.3);">
+      <div class="lbl">💬 QUOTE HARI INI</div>
+      <div class="quote-text" id="quote-text">"Belajar itu penting. Tapi tidur juga realistis."</div>
+    </div>
+
+    <div class="card" style="flex:2;overflow-y:auto;">
+      <div class="lbl">📋 JADWAL HARI INI</div>
+      <div id="today-schedule" style="margin-top:6px;display:flex;flex-direction:column;gap:5px;"></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-row" id="bottom-row"></div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>XI-H HISTORIC • SOSHUM • SMA NEGERI 2 TUBAN • SEMANGAT BELAJAR! 💪 • HISTORIC BISA! ⭐ • RAJIN BELAJAR, MASA DEPAN CERAH 🌟</span>
+    <span>XI-H HISTORIC • SOSHUM • SMA NEGERI 2 TUBAN • SEMANGAT BELAJAR! 💪 • HISTORIC BISA! ⭐ • RAJIN BELAJAR, MASA DEPAN CERAH 🌟</span>
+  </div>
+</div>
+
+<!-- HP Control Button -->
+<div id="hp-btn" onclick="document.getElementById('hp-panel').classList.toggle('open')">📱</div>
+
+<!-- HP Control Panel -->
+<div id="hp-panel">
+  <div class="panel-box">
+    <h2>📱 KONTROL HP</h2>
+
+    <div class="lbl" style="margin-bottom:6px;">📢 KIRIM PENGUMUMAN KE LAYAR</div>
+    <input class="panel-input" id="ann-input" placeholder="Tulis pesan... (contoh: Bawa buku besok!)">
+    <button class="panel-btn" onclick="sendAnnouncement()">📢 TAMPILKAN DI LAYAR</button>
+    <button class="panel-btn danger" onclick="clearAnnouncement()">✕ HAPUS PENGUMUMAN</button>
+
+    <div class="lbl" style="margin-top:14px;margin-bottom:6px;">🎨 GANTI TEMA PAKSA</div>
+    <button class="panel-btn" onclick="setTheme('pagi')">🌅 Mode Pagi</button>
+    <button class="panel-btn" onclick="setTheme('siang')">☀️ Mode Siang</button>
+    <button class="panel-btn" onclick="setTheme('sore')">🌇 Mode Sore</button>
+    <button class="panel-btn" onclick="setTheme('malam')">🌌 Mode Malam</button>
+    <button class="panel-btn" onclick="setTheme('auto')">🔄 Mode Auto</button>
+
+    <button class="panel-close" onclick="document.getElementById('hp-panel').classList.remove('open')">✕ Tutup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
