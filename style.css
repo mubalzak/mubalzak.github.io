@@ -3,7 +3,6 @@ body {
   min-height:100vh;
   color:#fff;
   font-family:'Rajdhani',sans-serif;
-  overflow:hidden;
   transition: background 2s ease;
   position:relative;
 }
